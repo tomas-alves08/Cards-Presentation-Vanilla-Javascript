@@ -1,36 +1,145 @@
 body {
   font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container {
-  width: 50px;
-  display: flex;
+.form-container {
+  width: 100vw;
+  display: block;
+  align-items: center;
+  margin: 1.5rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.5rem;
+}
+
+#form {
+  display: grid;
+}
+
+.form-input {
+  margin: auto;
+}
+
+.form-sub-container {
+  margin: auto;
+}
+
+.form-sub-container > input {
+  margin-right: 0.5rem;
+}
+
+.info-container {
+  margin: 0 0.7rem;
+}
+
+#container {
+  animation: transitionLoad 0.75s;
 }
 
 .card {
-  color: red;
-  border: solid 1px black;
-  border-radius: 5px;
-  padding: 10px 5px;
-  margin: 5px;
-  width: max-content;
+  background-color: #fff;
+  border: solid 1px rgb(59, 59, 59);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 0px;
+  margin: 20px auto;
+  width: 95vw;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.card-item {
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-name {
   display: flex;
 }
 
-.name {
-  margin: auto 3px;
+.card-name > p {
+  font-size: 1.3rem;
+  margin: 1rem 0.1rem 0.5rem;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 0%;
+}
+
+.info-item {
+  margin: 0.3rem;
+  line-height: 0.5rem;
+}
+
+.info-item > h5 {
+  margin: 1.3rem auto 0;
+  color: rgb(80, 80, 80);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.info-item > p {
+  margin: 0.7rem auto 1.5rem;
+  font-size: 0.9rem;
+}
+
+.info-item > h6 {
+  margin: 0.7rem auto 0rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.info-item .flex {
+  display: flex;
+  flex-direction: row;
 }
 
 .photo-container {
   display: flex;
   justify-content: center;
+  margin: 0;
 }
+
 .photo-container img {
-  height: 200px;
+  width: 100%;
+}
+
+@keyframes transitionLoad {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: rotateX(-100%);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: rotateX(0);
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  #container {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    display: flex;
+    width: 430px;
+  }
+}
+
+@media only screen and (min-width: 1550px) {
+  #container {
+    width: 1500px;
+  }
+
+  .form-container {
+    width: 1500px;
+  }
 }
