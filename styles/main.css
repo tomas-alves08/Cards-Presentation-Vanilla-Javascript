@@ -37,9 +37,9 @@ body {
   margin: 0 0.7rem;
 }
 
-#container {
+/* #container {
   animation: transitionLoad 0.75s;
-}
+} */
 
 .card {
   background-color: #fff;
@@ -50,7 +50,8 @@ body {
   margin: 20px auto;
   width: 95vw;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  /* transition: transform 0.3s ease; */
+  opacity: 1;
 }
 
 .card:hover {
@@ -107,6 +108,31 @@ body {
   width: 100%;
 }
 
+.hidden {
+  opacity: 0;
+  background-color: #fff;
+  border: solid 1px rgb(59, 59, 59);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 0px;
+  margin: 20px auto;
+  width: 95vw;
+  overflow: hidden;
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  background-color: #fff;
+  border: solid 1px rgb(59, 59, 59);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 0px;
+  margin: 20px auto;
+  width: 95vw;
+  overflow: hidden;
+}
+
 @keyframes transitionLoad {
   from {
     opacity: 0;
@@ -128,7 +154,7 @@ body {
     gap: 20px;
   }
 
-  .card {
+  .show {
     display: flex;
     width: 430px;
   }

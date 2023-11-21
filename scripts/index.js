@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const containerElement = document.getElementById("container");
   const button = document.getElementById("btn");
 
-  button.addEventListener("click", () => submitForm());
-
+  // Rendering Cards Logic
   const fetchData = async (cardsQty) => {
     try {
       containerElement.innerHTML = "";
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       data.results.forEach((item) => {
         const card = document.createElement("div");
-        card.classList.add("card");
+        card.classList.add("hidden");
         card.innerHTML = `
         <div class="photo-container">
           <img src=${item.picture.large} alt="Card of ${item.name.first} ${item.name.last}"  class="photo"/>
@@ -42,17 +41,20 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
         containerElement.appendChild(card);
+
+        const hiddenElements = document.querySelectorAll(".hidden");
+        hiddenElements.forEach((el) => observer.observe(el));
       });
     } catch (err) {
       alert("ERROR: " + err);
     }
   };
 
+  // Display Cards by Input Number Logic
   function submitForm() {
     const cardsQty = document.getElementById("cards-qty").value;
 
     if (cardsQty <= 0) {
-      console.log(cardsQty);
       alert("Please select a number bigger than zero.");
       return;
     } else {
@@ -62,5 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cards-qty").value = "";
   }
 
+  button.addEventListener("click", () => submitForm());
+
+  // Cards Hidden & Shown Animation Logic
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      console.log(entry);
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
+    });
+  });
+
+  // Display 3 Cards Default Behaviour Logic
   fetchData(3);
 });
