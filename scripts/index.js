@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       data.results.forEach((item) => {
         const card = document.createElement("div");
-        card.classList.add("hidden");
+        if (window.innerWidth >= 450) {
+          card.classList.add("show");
+        } else {
+          card.classList.add("hidden");
+        }
         card.innerHTML = `
         <div class="photo-container">
           <img src=${item.picture.large} alt="Card of ${item.name.first} ${item.name.last}"  class="photo"/>
@@ -64,7 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cards-qty").value = "";
   }
 
-  button.addEventListener("click", () => submitForm());
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    submitForm();
+  });
 
   // Cards Hidden & Shown Animation Logic
   const observer = new IntersectionObserver((entries) => {
